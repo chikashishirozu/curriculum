@@ -12,7 +12,19 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
+    
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{{ asset('faviconsekai.png') }}" type="image/png">
+    <!-- link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon" -->
+    
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <style>
+        body {
+            background-color: #b0c4de;
+        }
+    </style>
+    
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
