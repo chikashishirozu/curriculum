@@ -1,6 +1,6 @@
 <?php
 // データベースに接続する（接続情報は適切に設定すること）
-$pdo = new PDO("mysql:host=localhost;dbname=paizalesson01;charset=utf8mb4", "newuser", "password");
+$pdo = new PDO("mysql:host=localhost;dbname=bbsdatabase;charset=utf8mb4", "newuser", "J40AnzkvyrLA+H");
 
 // エラーハンドリングとエラー表示を有効化
 error_reporting(E_ALL);
@@ -54,6 +54,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <title>ToDo掲示板</title>
     <!-- Bootstrap CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <Link rel="shortcut icon" href="./favicon.ico/favicon.png" />
     <style type="text/css">
         /* 任意のスタイルを適用 */
         	div#main {
@@ -79,6 +80,17 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		#g {
 			margin: 0;
 		}
+		#h {
+			padding: 30px;
+		}
+		#i {
+			width: 10%;
+			box-sizing: border-box;
+		}
+		#j {
+			width: 70%;
+			box-sizing: border-box;
+		}		
     </style>
 </head>
 <body>
@@ -105,12 +117,12 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <!-- 発言リスト -->
             <div class="post-list">
                 <h2>発言リスト</h2>
-                <table class="table table-striped">
+                <table class="table table-striped" id="h">
                     <thead>
                         <tr>
                             <th>id</th>
-                            <th>日時</th>
-                            <th>投稿内容</th>
+                            <th id="i">日時</th>
+                            <th id="j">投稿内容</th>
                             <th>投稿者</th>
                             <th>削除</th>
                         </tr>
