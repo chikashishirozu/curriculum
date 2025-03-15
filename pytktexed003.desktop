@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=Text Editor new
+Comment=A Fancy tk Application
+Exec=python3 /home/hiroppy123/pytktexed003/pytktexed003.py
+Icon=/home/hiroppy123/pytktexed003/texedicon.png
+Categories=Utility;
+
