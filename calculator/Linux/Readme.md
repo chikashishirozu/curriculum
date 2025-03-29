@@ -2,7 +2,7 @@
 
 hiroppy123@fedora:~/音楽/calculator/Linux$ python3 -m venv venv
 
-(venv) hiroppy123@fedora:~/音楽/calculator/Linux$ source venv/bin/activate
+hiroppy123@fedora:~/音楽/calculator/Linux$ source venv/bin/activate
 
 (venv) hiroppy123@fedora:~/音楽/calculator/Linux$ pip install cx_Freeze
 
