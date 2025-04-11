@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib import colors, font_manager
 import matplotlib
 # バックエンド設定（Qt5Aggを使用）
-matplotlib.use('QtAgg')
+matplotlib.use('Qt5Agg')
 
 # フォント設定
 try:
@@ -13,29 +13,31 @@ try:
 except:
     plt.rcParams['font.family'] = 'sazanami-gothic-fonts'
 
-def julia_set(c=-0.7+0.27j, width=800, height=800, xmin=-1.5, xmax=1.5, ymin=-1.5, ymax=1.5, max_iter=100):
+def newton_fractal(width=800, height=800, xmin=-2.0, xmax=2.0, ymin=-2.0, ymax=2.0, max_iter=50):
     x = np.linspace(xmin, xmax, width)
     y = np.linspace(ymin, ymax, height)
     X, Y = np.meshgrid(x, y)
     Z = X + Y * 1j
-    julia = np.zeros(Z.shape, dtype=int)
+    roots = [1, -0.5+0.866j, -0.5-0.866j]  # z^3-1=0の解
+    colors = np.zeros(Z.shape, dtype=int)
     
     for i in range(max_iter):
-        mask = np.abs(Z) < 1000  # 発散チェック
-        Z[mask] = Z[mask]**2 + c
-        julia += mask
+        Z = Z - (Z**3 - 1)/(3*Z**2)
     
-    return julia
+    # 各点がどの解に収束したかを判定
+    for i, root in enumerate(roots):
+        colors[np.isclose(Z, root, atol=1e-3)] = i + 1
+    
+    return colors
 
-julia = julia_set(c=-0.835-0.2321j)  # 美しいパターンのパラメータ
+newton = newton_fractal()
 
 plt.figure(figsize=(10, 10))
-plt.imshow(julia, cmap='twilight', extent=(-1.5, 1.5, -1.5, 1.5))
-plt.colorbar(label='反復回数')
-plt.title('ジュリア集合 (c = -0.835 -0.2321i)')
+plt.imshow(newton, cmap='viridis', extent=(-2.0, 2.0, -2.0, 2.0))
+plt.title('ニュートンフラクタル (z^3-1=0)')
 plt.xlabel('実部')
 plt.ylabel('虚部')
 
 # 画像をファイルに保存
-plt.savefig('mandelbrot03.png', dpi=300, bbox_inches='tight')
+plt.savefig('mandelbrot08.png', dpi=300, bbox_inches='tight')
 plt.show()
