@@ -24,3 +24,7 @@ $ pyenv install anaconda3-2024.10-1
 $ conda create -n mayavi_env -c conda-forge python=3.11 mayavi traits pyface vtk numba
 
 $ conda activate mayavi_env
+
+$ conda create -n fractal_env -c conda-forge python=3.11 mayavi traits pyface vtk numba matplotlib
+
+$ conda activate flactal_env
