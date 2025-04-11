@@ -1,8 +1,8 @@
 # Some font settings need to be modified and dependencies need to be installed. A virtual environment needs to be created.
 
-$ sudo apt install python3-dev python3-pyqt5 python3-matplotlib
-
 $ sudo apt update
+
+$ sudo apt install python3-dev python3-pyqt5 python3-matplotlib
 
 $ sudo apt install -y make build-essential libssl-dev zlib1g-dev \
     libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
