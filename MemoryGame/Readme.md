@@ -26,4 +26,6 @@ $ conda init
 
 $ source ~/.bashrc
 
-$ conda activate memorygame_env
+(base)$ conda activate memorygame_env
+
+(memorygame_env)$ python3 MemoryGame001.py
