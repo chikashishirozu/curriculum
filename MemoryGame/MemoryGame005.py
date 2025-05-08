@@ -99,7 +99,7 @@ class MemoryGame:
         from PIL import Image, ImageDraw, ImageFont    
         
         # 実際のゲームでは本物のカード画像を使用してください
-        width, height = 200, 300
+        width, height = 125, 187
         image = Image.new("RGB", (width, height), color)
         draw = ImageDraw.Draw(image)
         
