@@ -61,7 +61,7 @@ class MemoryGame:
         # カードの表画像を読み込む
         for i in range(1, 10):  # 仮に9種類のカードがあるとする
             try:
-                image = Image.open(f"cards/card_{i}.png").resize((125, 187))  # 適切なサイズに調整
+                image = Image.open(f"cards/card_{i}.png").resize((113, 168))  # 適切なサイズに調整
                 # 画像ファイルを読み込み
                 image = round_corners(image, radius=10)
 
@@ -73,7 +73,7 @@ class MemoryGame:
         
         # カードの裏画像を読み込む
         try:     
-            back_image = Image.open("cards/card_back.png").resize((125, 187))  # 適切なサイズに調整
+            back_image = Image.open("cards/card_back.png").resize((113, 168))  # 適切なサイズに調整
             back_image = round_corners(back_image, radius=10)
 
             self.card_images["back"] = ImageTk.PhotoImage(back_image)
@@ -99,7 +99,7 @@ class MemoryGame:
         from PIL import Image, ImageDraw, ImageFont    
         
         # 実際のゲームでは本物のカード画像を使用してください
-        width, height = 125, 187
+        width, height = 113, 168
         image = Image.new("RGB", (width, height), color)
         draw = ImageDraw.Draw(image)
         
