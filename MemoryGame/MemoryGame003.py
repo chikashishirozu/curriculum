@@ -6,6 +6,15 @@ import tkinter.font as tkfont
 import os
 import time
 
+def round_corners(image, radius):
+    """画像の角を丸くする"""
+    mask = Image.new("L", image.size, 0)
+    draw = ImageDraw.Draw(mask)
+    draw.rounded_rectangle((0, 0, image.size[0], image.size[1]), radius, fill=255)
+    result = image.copy()
+    result.putalpha(mask)
+    return result
+
 class MemoryGame:
     def __init__(self, root):
         self.root = root
@@ -43,7 +52,7 @@ class MemoryGame:
         
         # 初期化
         self.load_assets()
-        self.show_menu()
+        self.show_menu()        
     
     def load_assets(self):
         """カード画像などのアセットを読み込む"""
@@ -53,6 +62,7 @@ class MemoryGame:
         for i in range(1, 10):  # 仮に9種類のカードがあるとする
             try:
                 image = Image.open(f"cards/card_{i}.png")  # 画像ファイルを読み込み
+                image = round_corners(image, radius=30)
                 image = image.resize((125, 187))  # 適切なサイズに調整
                 self.card_images[f"card_{i}"] = ImageTk.PhotoImage(image)
             except FileNotFoundError:
@@ -61,8 +71,9 @@ class MemoryGame:
                 self.card_images[f"card_{i}"] = self.create_card_image("blue")
         
         # カードの裏画像を読み込む
-        try:
+        try:     
             back_image = Image.open("cards/card_back.png")
+            back_image = round_corners(back_image, radius=30)
             back_image = back_image.resize((125, 187))  # 適切なサイズに調整
             self.card_images["back"] = ImageTk.PhotoImage(back_image)
         except FileNotFoundError:
@@ -128,9 +139,9 @@ class MemoryGame:
         if self.custom_font.cget("family") == "liberation sans":
             self.custom_font = tkfont.Font(family="liberation serif", size=14)
 
-        print(f"Using PIL font: {self.pil_font.getname()}, size: {self.pil_font.size}")
+        """print(f"Using PIL font: {self.pil_font.getname()}, size: {self.pil_font.size}")
         print(f"Using font: {self.custom_font.cget('family')}, size: {self.custom_font.cget('size')}")
-        print("Available font families:", tkfont.families())
+        print("Available font families:", tkfont.families())"""
         
         tk.Label(self.menu_frame, text="", font=self.custom_font.actual()).pack(pady=10)
                 
@@ -145,9 +156,10 @@ class MemoryGame:
             tk.Label(self.menu_frame, image=self.tk_image).pack()                
                         
         # 背景画像の読み込み        
-        try:
+        try:        
             bg_image_path = os.path.join(os.path.dirname(__file__), "background.jpg")
             bg_image = Image.open(bg_image_path)
+            bg_image = round_corners(bg_image, radius=0)
             bg_image = bg_image.resize((1000, 750))  # 適切なサイズに調整
             self.bg_photo = ImageTk.PhotoImage(bg_image)
             
@@ -295,8 +307,8 @@ class MemoryGame:
         if not self.game_active:
             return
             
-        if not hasattr(self, 'timer_label') or not self.timer_label.winfo_exists():
-            return  # ラベルが存在しない場合は処理をスキップ            
+        """if not hasattr(self, 'timer_label') or not self.timer_label.winfo_exists():
+            return"""  # ラベルが存在しない場合は処理をスキップ            
         
         elapsed = int(time.time() - self.start_time)
         minutes = elapsed // 60
