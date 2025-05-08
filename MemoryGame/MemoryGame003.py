@@ -294,8 +294,8 @@ class MemoryGame:
         if not hasattr(self, 'root') or not self.root.winfo_exists():
             return    
     
-        if not hasattr(self, 'status_label') or not self.status_label.winfo_exists():
-            return  # ラベルが存在しない場合は何もしない    
+        """if not hasattr(self, 'status_label') or not self.status_label.winfo_exists():
+            return"""  # ラベルが存在しない場合は何もしない    
     
         """ステータスを更新"""
         status_text = f"現在のターン: {self.players[self.current_player]['name']}"
