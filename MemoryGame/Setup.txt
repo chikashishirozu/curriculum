@@ -1,0 +1,100 @@
+(fractal_env) hiroppy123@fedora:~/MemoryGame$ pyinstaller --name MemoryGame005 --onefile --icon=app_icon.ico --windowed MemoryGame005.py
+
+(fractal_env) hiroppy123@fedora:~/MemoryGame$ pyinstaller --clean MemoryGame0010.spec
+
+
+Inno Setup は、Windows 用のインストーラーを作成するための強力なツールです   　　　　
+Filename	Download Sites	Downloads	Date	Description
+innosetup-6.4.3.exe　　　　　　これはWindows上でしか使えないですか？使い方を解説してください。
+はい、Inno Setup は基本的に Windows専用 のインストーラー作成ツールです。
+Windows上で動作し、Windows用のインストーラー（.exe）を生成します。
+
+ただし、Wine（Linux/macOS上のWindows互換レイヤー）を使えば、非Windows環境でもInno Setupを実行できる場合がありますが、正式にはサポートされていません。
+
+🧰 Inno Setup の使い方（Windows環境）
+🔧 1. インストール手順
+公式サイト からダウンロード
+
+innosetup-6.4.3.exe（最新版）を取得
+
+インストーラーを実行
+
+デフォルト設定でインストール（特に変更不要）
+
+📝 2. 基本的なインストーラー作成手順
+(1) スクリプト（.iss）の作成
+メモ帳やVS Code で .iss ファイルを作成
+
+例：MemoryGameInstaller.iss
+
+pascal
+[Setup]
+AppName=MemoryGame
+AppVersion=1.0
+DefaultDirName={pf}\MemoryGame
+DefaultGroupName=MemoryGame
+OutputDir=output
+OutputBaseFilename=MemoryGameSetup
+Compression=lzma
+SolidCompression=yes
+
+[Files]
+Source: "dist\MemoryGame.exe"; DestDir: "{app}"
+Source: "data\*"; DestDir: "{app}\data"; Flags: recursesubdirs
+
+[Icons]
+Name: "{group}\MemoryGame"; Filename: "{app}\MemoryGame.exe"
+Name: "{desktop}\MemoryGame"; Filename: "{app}\MemoryGame.exe"
+(2) Inno Setup Compiler でビルド
+Inno Setup Compiler を起動
+
+「ファイル」→「開く」で .iss スクリプトを選択
+
+「ビルド」→「コンパイル」を実行
+→ output フォルダに MemoryGameSetup.exe が生成
+
+🖥️ 3. 主な設定オプション
+セクション	説明	例
+[Setup]	基本設定	AppName=MyApp, AppVersion=1.0
+[Files]	インストールするファイル	Source: "app.exe"; DestDir: "{app}"
+[Icons]	ショートカット作成	Name: "{desktop}\MyApp"; Filename: "{app}\app.exe"
+[Run]	インストール後実行	Filename: "{app}\app.exe"; Description: "Launch App"
+💡 4. 高度な設定例
+(1) 管理者権限を要求
+pascal
+[Setup]
+PrivilegesRequired=admin
+(2) 多言語対応
+pascal
+[Languages]
+Name: "en"; MessagesFile: "compiler:Default.isl"
+Name: "ja"; MessagesFile: "compiler:Languages\Japanese.isl"
+(3) カスタムインストールオプション
+pascal
+[Tasks]
+Name: "desktopicon"; Description: "デスクトップアイコンを作成"; GroupDescription: "追加アイコン"
+⚠️ 5. 注意点
+Windows専用（Linux/macOSではWineが必要）
+
+PyInstaller等で先にEXE化 しておく必要あり
+
+ファイルパスは相対パスで指定（dist\app.exe など）
+
+📦 6. 代替ツール（非Windows環境向け）
+ツール	対象OS	特徴
+NSIS	Windows	スクリプトベース、軽量
+WiX Toolset	Windows	XMLベース、Microsoft公式
+Electron Builder	Win/macOS/Linux	Electronアプリ向け
+dpkg/rpm	Linux	Debian/RHEL系向け
+✅ まとめ
+Inno SetupはWindows専用だが、シンプルで高機能
+
+.iss スクリプトを書く → コンパイルでEXE生成
+
+管理者権限や多言語対応も可能
+
+非Windows環境ではWineか別ツール（NSIS等）を検討
+
+より詳しい設定は 公式ドキュメント を参照してください！ 🚀
+
+
