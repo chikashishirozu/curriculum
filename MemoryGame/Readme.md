@@ -1,5 +1,16 @@
 # Some font settings need to be modified and dependencies need to be installed. A virtual environment needs to be created.
+
+# Easy start
+
 $ sudo apt update
+
+$ sudo apt install python3-dev python3-tk python3-pillow-tk python3-pillow python3-pillow-dev
+
+$ python3 MemoryGame001.py
+
+# another way
+
+$ sudo apt update && upgrade
 
 $ sudo apt install python3-dev python3-pyqt5 python3-matplotlib
 
