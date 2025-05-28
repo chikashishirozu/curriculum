@@ -4,7 +4,14 @@ import random
 from PIL import Image, ImageTk, ImageFont, ImageDraw
 import tkinter.font as tkfont
 import os
+import sys
 import time
+
+def resource_path(relative_path):
+    """ PyInstaller での実行時にリソースファイルの絶対パスを取得 """
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
 
 def round_corners(image, radius):
     """画像の角を丸くする"""
@@ -22,7 +29,7 @@ class MemoryGame:
         self.root.geometry("900x675")
         self.root.minsize(900, 675)
         
-        font_path = "/home/hiroppy123/.local/share/fonts/NotoSansJP-Regular.ttf"
+        font_path = resource_path("fonts/NotoSansJP-Regular.ttf")
         self.pil_font = ImageFont.truetype(font_path, size=16)
         self.custom_font = tkfont.Font(family="liberation sans", size=14)        
         
@@ -103,14 +110,14 @@ class MemoryGame:
         from PIL import Image, ImageDraw, ImageFont    
         
         # 実際のゲームでは本物のカード画像を使用してください
-        width, height = 113, 168
+        width, height = 113, 166
         image = Image.new("RGB", (width, height), color)
         draw = ImageDraw.Draw(image)
         
         
         # 大きなフォントで描画（※ファイルパスは要確認）
         try:
-            font = ImageFont.truetype("./NotoSansJP-Regular.ttf", 20)  # 24ptに変更
+            font = ImageFont.truetype(font_path, 24)  # 24ptに変更
         except:
             font = ImageFont.load_default()        
         
@@ -144,25 +151,25 @@ class MemoryGame:
         self.menu_frame.pack(fill="both", expand=True)
         
         # PILのImageFontを初期化
-        font_path = "/home/hiroppy123/.local/share/fonts/NotoSansJP-Regular.ttf"
+        font_path = resource_path("fonts/NotoSansJP-Regular.ttf")
         self.pil_font = ImageFont.truetype(font_path, size=20)
-        self.custom_font = tkfont.Font(family="liberation sans", size=14)
+        self.custom_font = tkfont.Font(family="liberation sans", size=12)
 
         # フォントが見つからない場合のフォールバック
         if self.custom_font.cget("family") == "liberation sans":
-            self.custom_font = tkfont.Font(family="liberation serif", size=14)
+            self.custom_font = tkfont.Font(family="liberation serif", size=12)
 
         """print(f"Using PIL font: {self.pil_font.getname()}, size: {self.pil_font.size}")
         print(f"Using font: {self.custom_font.cget('family')}, size: {self.custom_font.cget('size')}")
         print("Available font families:", tkfont.families())"""
         
-        tk.Label(self.menu_frame, text="", font=self.custom_font.actual()).pack(pady=10)
+        tk.Label(self.menu_frame, text="", font=self.custom_font.actual()).pack(pady=8)
                 
         # PIL で画像に文字を描画
         if self.pil_font:
             img = Image.new("RGB", (160, 43), color="silver")
             draw = ImageDraw.Draw(img)
-            draw.text((14, 5), "神経衰弱GAME", font=self.pil_font, fill="navy")
+            draw.text((12, 5), "神経衰弱GAME", font=self.pil_font, fill="navy")
 
             # Tkinterで表示するためImageTkに変換
             self.tk_image = ImageTk.PhotoImage(img)
@@ -172,7 +179,7 @@ class MemoryGame:
         try:        
             bg_image_path = os.path.join(os.path.dirname(__file__), "background.jpg")
             bg_image = Image.open(bg_image_path).resize((900, 675))  # 適切なサイズに調整
-            bg_image = round_corners(bg_image, radius=10)
+            bg_image = round_corners(bg_image, radius=0)
 
             self.bg_photo = ImageTk.PhotoImage(bg_image)
             
@@ -187,26 +194,26 @@ class MemoryGame:
         settings_frame.pack(expand=True, padx=5, pady=5)
 
         # フォント設定
-        font_settings = ("liberation sans", 14)
+        font_settings = ("liberation sans", 12)
 
         tk.Label(settings_frame, text="プレイヤー人数:", 
-                font=("liberation sans", 14), width=14, height=1).grid(row=0, column=0, sticky="e")
+                font=("liberation sans", 12), width=14, height=1).grid(row=0, column=0, sticky="e")
         self.players_var = tk.StringVar(value=str(self.default_settings['players']))
         tk.Entry(settings_frame, textvariable=self.players_var, width=5, font=font_settings).grid(row=0, column=1)
        
         tk.Label(settings_frame, text="行数:", 
-                font=("liberation sans", 14), width=14, height=1).grid(row=1, column=0, sticky="e")
+                font=("liberation sans", 12), width=14, height=1).grid(row=1, column=0, sticky="e")
         self.rows_var = tk.StringVar(value=str(self.default_settings['rows']))
         tk.Entry(settings_frame, textvariable=self.rows_var, width=5, font=font_settings).grid(row=1, column=1)
         
         tk.Label(settings_frame, text="列数:", 
-                font=("liberation sans", 14), width=14, height=1).grid(row=2, column=0, sticky="e")
+                font=("liberation sans", 12), width=14, height=1).grid(row=2, column=0, sticky="e")
         self.cols_var = tk.StringVar(value=str(self.default_settings['cols']))
         tk.Entry(settings_frame, textvariable=self.cols_var, width=5, font=font_settings).grid(row=2, column=1)
         
         # スタートボタン
         tk.Button(self.menu_frame, text="ゲーム開始", 
-                 command=self.start_game, bg="blue", fg="white", font=("liberation sans", 15), width=13, height=2).pack(pady=5, anchor="center")                
+                 command=self.start_game, bg="blue", fg="white", font=("liberation sans", 15), width=12, height=2).pack(pady=5, anchor="center")                
     
     def start_game(self):
         """ゲームを開始"""
@@ -292,7 +299,7 @@ class MemoryGame:
         self.status_label = tk.Label(status_frame, text="", font=("liberation sans", 14))
         self.status_label.pack(side="left", padx=10)
         
-        self.timer_label = tk.Label(status_frame, text="00:00", font=("liberation sans", 24))
+        self.timer_label = tk.Label(status_frame, text="00:00", font=("liberation sans", 14))
         self.timer_label.pack(side="right", padx=10)
         
         # カードグリッド
