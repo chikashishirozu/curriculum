@@ -67,7 +67,7 @@ class MemoryGame:
             try:
                 image = Image.open(f"cards/card_{i}.png").resize((113, 166))  # 適切なサイズに調整
                 # 画像ファイルを読み込み
-                image = round_corners(image, radius=20)
+                image = round_corners(image, radius=10)
 
                 self.card_images[f"card_{i}"] = ImageTk.PhotoImage(image)
             except FileNotFoundError:
@@ -78,7 +78,7 @@ class MemoryGame:
         # カードの裏画像を読み込む
         try:     
             back_image = Image.open("cards/card_back.png").resize((113, 166))  # 適切なサイズに調整
-            back_image = round_corners(back_image, radius=20)
+            back_image = round_corners(back_image, radius=10)
 
             self.card_images["back"] = ImageTk.PhotoImage(back_image)
         except FileNotFoundError:
@@ -172,7 +172,7 @@ class MemoryGame:
         try:        
             bg_image_path = os.path.join(os.path.dirname(__file__), "background.jpg")
             bg_image = Image.open(bg_image_path).resize((900, 675))  # 適切なサイズに調整
-            bg_image = round_corners(bg_image, radius=0)
+            bg_image = round_corners(bg_image, radius=10)
 
             self.bg_photo = ImageTk.PhotoImage(bg_image)
             
