@@ -1,3 +1,16 @@
+Download Anaconda3-2024.10-1-Windows-x86_64.exe from https://www.anaconda.com/download and install it.
+
+Launch Anaconda Prompt with administrator privileges.
+
+C:\Users\user\Desktop\MemoryGame>conda create -n memorygame_env -c conda-forge python=3.11 mayavi traits pyface vtk numba matplotlib pillow tk pyinstaller
+
+C:\Users\user\Desktop\MemoryGame>conda activate memorygame_env 
+
+(memorygame_env) C:\Users\user\Desktop\MemoryGame>pyinstaller MemoryGame0055.spec  
+
+
+以下はFedora42での設定
+
 (fractal_env) hiroppy123@fedora:~/MemoryGame$ pyinstaller --name MemoryGame005 --onefile --icon=app_icon.ico --windowed MemoryGame005.py
 
 (fractal_env) hiroppy123@fedora:~/MemoryGame$ pyinstaller --clean MemoryGame0010.spec
