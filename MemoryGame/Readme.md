@@ -2,9 +2,9 @@
 
 # Easy start
 
-$ sudo apt update
+$ sudo dnf update
 
-$ sudo apt install python3-dev python3-tk python3-pillow-tk python3-pillow python3-pillow-dev
+$ sudo dnf install python3-devel python3-tk python3-pillow-tk python3-pillow python3-pillow-dev
 
 $ python3 MemoryGame001.py
 
