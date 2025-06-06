@@ -2,7 +2,7 @@
 Type=Application
 Encoding=UTF-8
 Name=MemoryGame0055
-Comment=A Pomodoro Technique Timer Application
+Comment=A MemoryGame Application
 Exec=python3 /home/hiroppy123/MemoryGame/MemoryGame0055.py
 Icon=/home/hiroppy123/MemoryGame/app_icon.png
 Categories=Utility;
