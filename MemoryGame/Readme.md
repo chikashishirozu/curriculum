@@ -39,6 +39,6 @@ $ source ~/.bashrc
 
 (base)$ conda activate memorygame_env
 
---- (When using MemoryGame.desktop to set up auto-launch with an icon, you must place the MemoryGame.desktop file in .local/share/applocasions and copy the cards and fonts directories to your user directory.) ---
-
 (memorygame_env)$ python3 MemoryGame001.py
+
+--- (When using MemoryGame.desktop to set up auto-launch with an icon, you must place the MemoryGame.desktop file in .local/share/applocasions and copy the cards and fonts directories to your user directory.) ---
