@@ -6,6 +6,9 @@ $ sudo dnf update
 
 $ sudo dnf install python3-devel python3-tk python3-pillow-tk python3-pillow python3-pillow-dev
 
+# Download sazanami gothic and install
+https://cooltext.com/download-font-%E3%81%95%E3%81%96%E3%81%AA%E3%81%BF%E3%82%B4%E3%82%B7%E3%83%83%E3%82%AF+sazanami+gothic#google_vignette
+
 $ python3 MemoryGame001.py
 
 # another way
