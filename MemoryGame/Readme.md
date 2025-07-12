@@ -42,3 +42,11 @@ $ source ~/.bashrc
 (memorygame_env)$ python3 MemoryGame001.py
 
 --- (When using MemoryGame.desktop to set up auto-launch with an icon, you must place the MemoryGame.desktop file in .local/share/applicasions and copy the cards and fonts directories to your user directory.) ---
+
+$ python3 -m venv venv
+
+$ source venv/bin/activate
+
+$ pip install pillow tk
+
+$ cp MemoryGame.desktop ~/.local/share/applications
