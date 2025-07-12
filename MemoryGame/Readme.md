@@ -53,3 +53,5 @@ $ source venv/bin/activate
 $ pip install pillow tk
 
 $ cp MemoryGame.desktop ~/.local/share/applications
+
+nesesary logout and login
