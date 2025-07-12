@@ -1,8 +1,9 @@
 [Desktop Entry]
 Type=Application
 Encoding=UTF-8
-Name=MemoryGame0055
+Name=MemoryGame0070
 Comment=A MemoryGame Application
-Exec=python3 /home/hiroppy123/MemoryGame/MemoryGame0055.py
+Exec=/home/hiroppy123/MemoryGame/MemoryGameLauncher.sh
+Path=/home/hiroppy123/MemoryGame
 Icon=/home/hiroppy123/MemoryGame/app_icon.png
-Categories=Utility;
+Categories=Game;

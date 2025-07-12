@@ -4,14 +4,7 @@ import random
 from PIL import Image, ImageTk, ImageFont, ImageDraw
 import tkinter.font as tkfont
 import os
-import sys
 import time
-
-def resource_path(relative_path):
-    """ PyInstaller での実行時にリソースファイルの絶対パスを取得 """
-    if hasattr(sys, '_MEIPASS'):
-        return os.path.join(sys._MEIPASS, relative_path)
-    return os.path.join(os.path.abspath("."), relative_path)
 
 def round_corners(image, radius):
     """画像の角を丸くする"""
@@ -29,8 +22,8 @@ class MemoryGame:
         self.root.geometry("900x675")
         self.root.minsize(900, 675)
         
-        font_path = resource_path("fonts/NotoSansJP-Regular.ttf")
-        self.pil_font = ImageFont.truetype(font_path, size=16)
+        font_path = "/home/hiroppy123/.local/share/fonts/NotoSansJP-Regular.ttf"
+        self.pil_font = ImageFont.truetype(font_path, size=25)
         self.custom_font = tkfont.Font(family="liberation sans", size=14)        
         
         # ゲーム設定
@@ -117,7 +110,7 @@ class MemoryGame:
         
         # 大きなフォントで描画（※ファイルパスは要確認）
         try:
-            font = ImageFont.truetype(font_path, 24)  # 24ptに変更
+            font = ImageFont.truetype("./NotoSansJP-Regular.ttf", 24)  # 24ptに変更
         except:
             font = ImageFont.load_default()        
         
@@ -151,13 +144,13 @@ class MemoryGame:
         self.menu_frame.pack(fill="both", expand=True)
         
         # PILのImageFontを初期化
-        font_path = resource_path("fonts/NotoSansJP-Regular.ttf")
-        self.pil_font = ImageFont.truetype(font_path, size=20)
+        font_path = "/home/hiroppy123/.local/share/fonts/NotoSansJP-Regular.ttf"
+        self.pil_font = ImageFont.truetype(font_path, size=25)
         self.custom_font = tkfont.Font(family="liberation sans", size=12)
 
         # フォントが見つからない場合のフォールバック
         if self.custom_font.cget("family") == "liberation sans":
-            self.custom_font = tkfont.Font(family="liberation serif", size=12)
+            self.custom_font = tkfont.Font(family="sazanami githic", size=14)
 
         """print(f"Using PIL font: {self.pil_font.getname()}, size: {self.pil_font.size}")
         print(f"Using font: {self.custom_font.cget('family')}, size: {self.custom_font.cget('size')}")
@@ -167,9 +160,9 @@ class MemoryGame:
                 
         # PIL で画像に文字を描画
         if self.pil_font:
-            img = Image.new("RGB", (160, 43), color="silver")
+            img = Image.new("RGB", (200, 50), color="#00CED1")
             draw = ImageDraw.Draw(img)
-            draw.text((12, 5), "神経衰弱GAME", font=self.pil_font, fill="navy")
+            draw.text((12, 5), "神経衰弱GAME", font=self.pil_font, fill="#191970")
 
             # Tkinterで表示するためImageTkに変換
             self.tk_image = ImageTk.PhotoImage(img)
@@ -213,7 +206,7 @@ class MemoryGame:
         
         # スタートボタン
         tk.Button(self.menu_frame, text="ゲーム開始", 
-                 command=self.start_game, bg="blue", fg="white", font=("liberation sans", 15), width=12, height=2).pack(pady=5, anchor="center")                
+                 command=self.start_game, bg="#000080", fg="#E0FFFF", font=("liberation sans", 15), width=12, height=2).pack(pady=(5, 20), anchor="center")                
     
     def start_game(self):
         """ゲームを開始"""
@@ -296,10 +289,10 @@ class MemoryGame:
         status_frame = tk.Frame(self.game_frame)
         status_frame.pack(fill="x", pady=10)
         
-        self.status_label = tk.Label(status_frame, text="", font=("liberation sans", 14))
+        self.status_label = tk.Label(status_frame, text="", font=("liberation sans", 12))
         self.status_label.pack(side="left", padx=10)
         
-        self.timer_label = tk.Label(status_frame, text="00:00", font=("liberation sans", 14))
+        self.timer_label = tk.Label(status_frame, text="00:00", font=("liberation sans", 15))
         self.timer_label.pack(side="right", padx=10)
         
         # カードグリッド
@@ -317,7 +310,7 @@ class MemoryGame:
             self.card_buttons.append(row_buttons)
         
         # メニューボタン
-        tk.Button(self.game_frame, text="メニューに戻る", font=self.custom_font, command=self.show_menu).pack(pady=15)
+        tk.Button(self.game_frame, text="メニューに戻る", bg="#40E0D0", font=self.custom_font, command=self.show_menu).pack(pady=(0, 25))
         
         self.update_status()
         self.update_timer()
