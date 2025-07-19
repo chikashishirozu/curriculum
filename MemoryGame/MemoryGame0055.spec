@@ -41,7 +41,7 @@ exe = EXE(
     a.zipfiles,    
     a.datas,
     [],
-    name='MemoryGame005',
+    name='MemoryGame0010',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,

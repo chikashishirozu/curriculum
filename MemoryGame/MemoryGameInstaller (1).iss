@@ -10,13 +10,14 @@ SolidCompression=yes
 PrivilegesRequired=admin
 
 [Files]
-Source: "dist\MemoryGame003.exe"; DestDir: "{app}"
+Source: "dist\MemoryGame0010.exe"; DestDir: "{app}"
 Source: "cards\*.*"; DestDir: "{app}\cards"; Flags: recursesubdirs createallsubdirs
 Source: "fonts\*.*"; DestDir: "{app}\fonts"; Flags: recursesubdirs createallsubdirs
+Source: "background.jpg"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
-Name: "{group}\MemoryGame"; Filename: "{app}\MemoryGame003.exe"
-Name: "{commondesktop}\MemoryGame"; Filename: "{app}\MemoryGame003.exe"; Tasks: desktopicon
+Name: "{group}\MemoryGame"; Filename: "{app}\MemoryGame0010.exe"
+Name: "{commondesktop}\MemoryGame"; Filename: "{app}\MemoryGame0010.exe"; Tasks: desktopicon
 
 [Languages]
 Name: "en"; MessagesFile: "compiler:Default.isl"
