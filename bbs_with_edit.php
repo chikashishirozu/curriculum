@@ -104,13 +104,15 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
             height: 300px;
         }
         #c {
-            margin: 5px 0 0 0;		
+            margin: 5px 0 0 0;
+            width: 10%;	
         }
         #d {
             margin: 5px 0 10px 0;		
         }
         #e {
-            margin: 10px 0 20px 0;			
+            margin: 10px 0 20px 0;
+            text-align: right;			
         }
         #g {
             margin: 0;
@@ -118,20 +120,51 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         #h {
             padding: 30px;
         }
+        /* IDカラムの幅を半分に */
+        .id-column {
+            width: 6%;
+            box-sizing: border-box;
+            text-align: left;
+        }        
         #i {
             width: 10%;
             box-sizing: border-box;
         }
         #j {
-            width: 60%;
+            width: 65%;
             box-sizing: border-box;
         }
+        
         .action-buttons {
-            width: 15%;
+            width: 7%;
         }
         .btn-group-vertical .btn {
             margin-bottom: 5px;
         }
+        
+        /* テキストの折り返し設定 */
+        .post-content {
+            word-wrap: break-word;
+            word-break: break-all;
+            white-space: pre-wrap;
+            max-width: 100%;
+            overflow-wrap: break-word;
+        }
+        
+        /* テーブル全体の幅制御 */
+        .table {
+            table-layout: fixed;
+            width: 100%;
+        }
+        
+        /* 投稿内容列の幅とスタイル */
+        .table td:nth-child(3) {
+            word-wrap: break-word;
+            word-break: break-all;
+            white-space: pre-wrap;
+            vertical-align: top;
+            padding: 12px 8px;
+        }        
     </style>
 </head>
 <body>
@@ -155,13 +188,15 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <label class="control-label" id="c">投稿者</label>
                         <input class="form-control" type="text" name="user_name" id="d" value="<?= $edit_post ? htmlspecialchars($edit_post['user_name']) : '' ?>" required>
                     </div>
-                    <div class="btn-group">
-                        <button class="btn btn-primary" type="submit" id="e">
-                            <?php echo $edit_post ? '更新' : '送信'; ?>
-                        </button>
-                        <?php if ($edit_post): ?>
-                            <a href="bbs_with_edit.php" class="btn btn-secondary">キャンセル</a>
-                        <?php endif; ?>
+                    <div class="d-flex justify-content-end">
+                        <div class="btn-group">
+                            <button class="btn btn-primary" type="submit" id="e">
+                                <?php echo $edit_post ? '更新' : '送信'; ?>
+                            </button>
+                            <?php if ($edit_post): ?>
+                                <a href="bbs.php" class="btn btn-secondary">キャンセル</a>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -172,7 +207,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <table class="table table-striped" id="h">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th class="id-column">ID</th>
                             <th id="i">日時</th>
                             <th id="j">投稿内容</th>
                             <th>投稿者</th>
@@ -182,7 +217,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <tbody>
                         <?php foreach ($rows as $row): ?>
                             <tr>
-                                <td><?= $row['id'] ?></td>
+                                <td class="id-column"><?= $row['id'] ?></td>
                                 <td><?= $row['updated_at'] ?></td>
                                 <td><?= htmlspecialchars($row['content']) ?></td>
                                 <td><?= htmlspecialchars($row['user_name']) ?></td>
