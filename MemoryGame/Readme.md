@@ -55,3 +55,7 @@ $ pip install pillow tk
 $ cp MemoryGame.desktop ~/.local/share/applications
 
 nesesary logout and login
+
+# Concentration game demonstration video URL
+
+https://youtu.be/k96Tgi6niYE
