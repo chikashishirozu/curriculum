@@ -194,7 +194,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <?php echo $edit_post ? '更新' : '送信'; ?>
                             </button>
                             <?php if ($edit_post): ?>
-                                <a href="bbs.php" class="btn btn-secondary">キャンセル</a>
+                                <button href="bbs_with_edit.php" class="btn btn-secondary" style="padding: 6px 10px; font-size: 1.2rem; margin: 7px;">キャンセル</button>
                             <?php endif; ?>
                         </div>
                     </div>
