@@ -190,11 +190,11 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                     <div class="d-flex justify-content-end">
                         <div class="btn-group">
-                            <button class="btn btn-primary" type="submit" id="e">
+                            <button class="btn btn-primary" style="border-radius: 5px;" type="submit" id="e">
                                 <?php echo $edit_post ? '更新' : '送信'; ?>
                             </button>
                             <?php if ($edit_post): ?>
-                                <button href="bbs_with_edit.php" class="btn btn-secondary" style="padding: 6px 10px; font-size: 1.2rem; margin: 7px;">キャンセル</button>
+                                <button href="bbs_with_edit.php" class="btn btn-secondary" style="padding: 6px 10px; font-size: 1.2rem; margin: 7px; border: none; border-radius: 5px;">キャンセル</button>
                             <?php endif; ?>
                         </div>
                     </div>
